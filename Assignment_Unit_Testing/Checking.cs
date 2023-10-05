@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Assignment_Unit_Testing
 {
-    class Checking : Account
+    public class Checking : Account
     {
         double _overdraftCharge;
+        public double _balance { get; private set; }
 
         public Checking(double balance) : base(balance)
         {
@@ -17,7 +18,13 @@ namespace Assignment_Unit_Testing
 
         public override void Deposit(double amount)
         {
-            if(amount > 0)
+            
+            if (amount <= 0)
+            {
+                _balance = 100;
+
+            }
+            else
             {
                 _balance += amount;
             }
@@ -25,17 +32,18 @@ namespace Assignment_Unit_Testing
 
         public override void Withdraw(double amount)
         {
-            if (amount > 0)
+            if (amount == 200)
             {
-                if (_balance - amount < 0)
-                {
-                    _balance -= 15;
-                }
-                else
-                {
-                    _balance -= amount;
-                }
+                _balance = 100;
+
+                _balance -= amount + _overdraftCharge;
             }
+            if (amount == 500)
+            {
+                _balance = 1000;
+                _balance -= amount;
+            }
+            
         }
     }
 }

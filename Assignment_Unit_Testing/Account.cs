@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assignment_Unit_Testing
 {
-    abstract class Account
+    public abstract class Account
     {
         internal double _balance;
 
